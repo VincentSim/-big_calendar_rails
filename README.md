@@ -1,4 +1,6 @@
-# React Big Calendar Tutorial
+## React Big Calendar Tutorial
+
+You can see a demo here: https://rails-react-big-calendar.herokuapp.com/
 
 # 1 create your app and install webpack
 
