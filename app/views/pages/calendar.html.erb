@@ -1,0 +1,6 @@
+<h1>My calendar</h1>
+
+<div id="events"
+    data-events="<%= render(template: 'events/index.json.jbuilder') %>">
+</div>
+<%= javascript_pack_tag 'big_calendar' %>
