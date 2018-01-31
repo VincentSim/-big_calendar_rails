@@ -7,18 +7,6 @@ import { Component } from 'react';
 
 BigCalendar.momentLocalizer(moment); // or globalizeLocalizer
 
-const myEventsList= [
-  {
-    'title': 'Event 1',
-    'startDate': new Date(2018,1,2,8),
-    'endDate': new Date(2018,1,2,10)
-  },
-  {
-    'title': 'Event 2',
-    'startDate': new Date(2018,1,3,12),
-    'endDate': new Date(2018,1,3,15)
-  }];
-console.log(myEventsList);
 
 const dateFormat = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/;
 
@@ -49,9 +37,6 @@ export default class MyCalendar extends Component {
           events={this.state.events}
           defaultView='week'
           views={['week']}
-          culture='fr'
-          today="Aujourd'hui"
-          messages={{'today': "Aujourd'hui", "previous":'précédente', "next":"suivante"}}
           selectable
           step={60}
           timeevents={1}
@@ -88,7 +73,6 @@ export default class MyCalendar extends Component {
     );
   }
   createEvent = (element) => {
-    console.log(element);
     Rails.ajax({
       type: 'POST',
       data: 'event[id]='+this.state.event_id+'&event[start]='+this.state.event_start_on+'&event[end]='+this.state.event_end_on+'&event[title]='+this.state.event_title,
@@ -102,7 +86,6 @@ export default class MyCalendar extends Component {
   }
 
    handleInputChange = (e) => {
-    console.log(e.target.value);
     this.setState({
       event_title: e.target.value
     })
@@ -133,3 +116,10 @@ if (eventsContainer) {
     <MyCalendar calendar= {calendar}/>
     , eventsContainer);
 }
+
+
+// scroll to see time.now()
+const d = new Date();
+const n = d.getHours();
+
+document.getElementsByClassName('rbc-time-content')[0].scrollTop = ((n-1)*40);
